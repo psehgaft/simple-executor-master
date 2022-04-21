@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1458638799782
+Build-Jdk: 1.7.0_79
+Built-By: hromerot
+Bundle-ManifestVersion: 2
+Bundle-Name: Simple program executor. Apache commons-exec based
+Bundle-SymbolicName: com.rsa.proc.simple-executor
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Import-Package: com.rsa.proc,com.rsa.proc.buffer,com.rsa.proc.config.imp
+ l,com.rsa.proc.jmx,javax.management,org.apache.activemq.camel.component
+ ,org.apache.karaf.management,org.osgi.service.blueprint;version="[1.0.0
+ ,2.0.0)"
+Import-Service: javax.management.MBeanServer;multiple:=false
+Tool: Bnd-1.50.0

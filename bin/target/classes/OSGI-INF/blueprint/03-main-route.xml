@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+	xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<camelContext id="proc-executor-main-context" xmlns="http://camel.apache.org/schema/blueprint">
+		<dataFormats>
+			<json id="program-marshaller" library="Jackson"
+				unmarshalTypeName="com.rsa.proc.dto.Program" />
+			<json id="execution-marshaller" library="Jackson"
+				unmarshalTypeName="com.rsa.proc.dto.Execution" />
+		</dataFormats>
+		<route id="jms-file">
+			<from uri="activemq:{{inQueueDefinition}}" />
+			<unmarshal ref="program-marshaller" />
+			<to uri="bean:buffer-controller?method=addExecution(${header.JMSCorrelationID}, ${body})"/>
+			<choice>
+				<when>
+					<simple>${body.newExecution}</simple>
+					<setBody>
+						<simple>${body.program}</simple>
+					</setBody>
+					<to uri="bean:buffered-executor" />
+					<setHeader headerName="JMSType">
+							<constant>Text</constant>
+						</setHeader>
+					<split>
+						<simple>${body}</simple>
+						
+						<setHeader headerName="JMSCorrelationID">
+							<simple>${body.destinationId}</simple>
+						</setHeader>
+						<setBody>
+							<simple>${body.executionResult}</simple>
+						</setBody>
+						<marshal ref="execution-marshaller" />
+						<convertBodyTo type="String" />
+						<to uri="activemq:{{outQueueDefinition}}" />
+					</split>
+				</when>
+			</choice>
+		</route>
+	</camelContext>
+
+
+</blueprint>

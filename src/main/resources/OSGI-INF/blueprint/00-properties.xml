@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.0.0"
+    xsi:schemaLocation="
+             http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+             http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+    <cm:property-placeholder id="executionProperties" persistent-id="com.rsa.proc.config">
+		<cm:default-properties>
+		    
+		     <cm:property name="environmentPropertiesPath" value="C:/RedHat/properties/environment.properties" />
+			<cm:property name="programPropertiesPath" value="C:/RedHat/properties/program.properties"/>
+			<cm:property name="programTempDir" value="C:/RedHat/tempDir"/>
+			<cm:property name="saveRequestsTempDir" value="C:/RedHat/requests"/>
+			<cm:property name="tempLogPath" value="C:/RedHat/logs/"/>
+		   
+			<!-- Linux Properties 
+			<cm:property name="environmentPropertiesPath" value="/tmp/tempDir/environment.properties" />
+			<cm:property name="programPropertiesPath" value="/tmp/tempDir/program.properties"/>
+			<cm:property name="programTempDir" value="/tmp/tempDir"/>
+			<cm:property name="saveRequestsTempDir" value="/tmp/tempDir/requests"/>
+			<cm:property name="tempLogPath" value="/tmp/tempDir/logs/"/>
+			-->
+
+			<cm:property name="responseBufferSize" value="10240"/>
+			<cm:property name="brokerhost" value="localhost"/>
+			<cm:property name="brokerPort" value="61616"/>
+			<cm:property name="inQueueDefinition" value="royalsun.proc_execution.in.queue?username=admin&amp;password=admin&amp;concurrentConsumers=50"/>
+			<cm:property name="outQueueDefinition" value="royalsun.proc_execution.out.queue?username=admin&amp;password=admin"/>
+		  
+		    
+		</cm:default-properties>
+	</cm:property-placeholder>
+
+
+</blueprint>
