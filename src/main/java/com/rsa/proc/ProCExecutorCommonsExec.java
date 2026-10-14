@@ -19,7 +19,6 @@ import org.slf4j.LoggerFactory;
 
 import com.rsa.proc.config.ConfigurationEnvironment;
 import com.rsa.proc.config.ConfigurationManager;
-// import com.rsa.proc.config.ConfigurationEnvironment;
 import com.rsa.proc.config.ConfigurationNotFoundException;
 import com.rsa.proc.config.ProgramConfiguration;
 import com.rsa.proc.dto.Execution;
@@ -36,62 +35,7 @@ public class ProCExecutorCommonsExec implements ProgramExecutor {
 	private int bufferSize;
 	private File environmentPath;
 	private String tempLogPath;
-//	private ConfigurationEnvironment environmentVal; 
 	private static HashMap<String, String> environmentVal;
-	
-	/* Static parameters sender	
-	private static final String[] enviroment = new String[] {
-			"ALEA_AYUDA=\\\\10.142.66.54\\Alea10g\\AYUDA",
-			"ALEA_BIN=\\\\10.142.66.54\\Alea10g\\BIN",
-			"ALEA_C=\\\\10.142.66.54\\Alea10g\\C",
-			"ALEA_CIA='SEMA#GROUP'",
-			"ALEA_CIAS='SEMA#GROUP'",
-			"ALEA_CMD=\\\\10.142.66.54\\Alea10g\\CMD",
-			"ALEA_CNF=\\\\10.142.66.54\\Alea10g\\CNF",
-			"ALEA_DES=N",
-			"ALEA_ENT=X",
-			"ALEA_EXP=\\\\10.142.66.54\\Alea10g\\EXPORT",
-			"ALEA_FMB=\\\\10.142.66.54\\Alea10g\\FMBS",
-			"ALEA_FRM=\\\\10.142.66.54\\Alea10g\\FMXS",
-			"ALEA_HOME=\\\\10.142.66.54\\Alea10g\\",
-			"ALEA_INS=\\\\10.142.66.54\\Alea10g\\INSTALL\\SQL",
-			"ALEA_KOBJEC=\\\\10.142.66.54\\Alea10g\\KOBJEC",
-			"ALEA_KO_BIN=\\\\10.142.66.54\\oracle10\\",
-			"ALEA_LST=\\\\10.142.66.54\\Alea10g\\LISTADOS",
-			"ALEA_PATH=\\\\10.142.66.54\\Alea10g\\;\\\\10.142.66.54\\Alea10g\\CMD;\\\\10.142.66.54\\Alea10g\\UTL;\\\\10.142.66.54\\oracle10\\ora6ir17\\BIN",
-			"ALEA_REP=\\\\10.142.66.54\\Alea10g\\REP",
-			"ALEA_RPW=\\\\10.142.66.54\\Alea10g\\RPW",
-			"ALEA_SQL=\\\\10.142.66.54\\Alea10g\\SQL",
-			"ALEA_TAB=\\\\10.142.66.54\\Alea10g\\INSTALL\\TABLA",
-			"ALEA_TMP=C:\\\\TMP",
-			"ALEA_TRC=S",
-			"ALEA_USER=\\",
-			"ALEA_UTL=\\\\10.142.66.54\\Alea10g\\UTL",
-			"ARCH=%ALEA_TMP%\\BBVLIPEM.TXT",
-			"SystemDrive=C:",
-			"SystemRoot=C:\\\\Windows",
-			"USERDNSDOMAIN=ROYALSUN.MX",
-			"USERDOMAIN=ROYALSUN",
-			"USERNAME=DCABELLO",
-			"USERPROFILE=C:\\\\Users\\",
-			"LOGONSERVER=\\MEXSPADIR02",
-			"TNS_ADMIN=C:\\\\Program Files\\Common Files\\Quest Shared\\instantclient-basic-win32-10.1.0.5-20060419",
-			"PATH=\\\\10.142.66.54\\oracle10\\oracle10\\bin;\\\\10.142.66.54\\oracle10\\ora6ir17\\bin;%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem;%alea_path%",
-			"ORACLE_HOME=\\\\10.142.66.54\\oracle10\\oracle10",
-			"NLS_LANG=American_America.WE8ISO8859P1"
-			};
-	
-	
-	
-	public ProCExecutorCommonsExec(){
-		this.bufferSize = 10240;
-
-			for (int i = 0; i < enviroment.length; i++) {
-				String env[] = enviroment[i].split("=");
-				environmentVal.put(env[0], env[1]);
-			}
-	}
-	*/
 	
 	/* (non-Javadoc)Manager
 	 * @see com.rsa.proc.ProgramExecutor#execute(com.rsa.proc.dto.Program)
@@ -149,10 +93,6 @@ public class ProCExecutorCommonsExec implements ProgramExecutor {
 		    
 			ProCExecutorCommonsExec.LOGGER.debug("Commencing execution. Program: {}; Config: {}; Real arguments: {}", program, programConfiguration, arguments);
 			
-				
-			/* Example to send parameters to execute proC
-			commandLine.addArguments("1 420 M 4341 0 C:/RedHat/tempDir/temp.txt C:/RedHat/tempDir/ OPS$FEADM/Alearoyal1d@(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=10.142.74.57)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=ALEAC10G)))");
-			*/
 			returnCode = executor.execute(commandLine, environmentVal);
 			
 			
